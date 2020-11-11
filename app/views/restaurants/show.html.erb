@@ -1,0 +1,18 @@
+<div class="jumbotron">
+  <h1 class="display-4"><%= @restaurant.name %></h1>
+</div>
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= @restaurant.category.capitalize %></h5>
+       <%= @restaurant.phone_number %> | <%= @restaurant.address %>
+        <ul class="list-group">
+          <% @reviews.each do |review| %>
+           <li class="list-item mt-5" style="list-style-type: none;"> <%= review.content %> <% review.rating.times do %> <i class="fas fa-star"></i> <% end %> <% (5 - review.rating).times do %> <i class="far fa-star"></i><% end %></li>
+          <% end %>
+        </ul>
+       <%= link_to 'Go back to the list', restaurants_path, class: 'btn btn-primary mt-5' %>
+       <%= link_to 'Leave a review', new_restaurant_review_path(@restaurant), class: 'btn btn-primary mt-5' %>
+    </div>
+  </div>
+</div>
